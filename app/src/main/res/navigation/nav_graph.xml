@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    android:label="phones"
+    app:startDestination="@id/searchFragment">
+
+    <fragment
+        android:id="@+id/itemDetailFragment"
+        android:name="android.ptc.com.ptcflixing.ui.item_detail.ItemDetailFragment"
+        android:label="Details"
+        tools:layout="@layout/fragment_item_detail">
+        <argument
+            android:name="productId"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="android.ptc.com.ptcflixing.ui.search.SearchFragment"
+        android:label="Search"
+        tools:layout="@layout/fragment_search_page">
+        <action
+            android:id="@+id/action_searchFragment_to_resultListFragment"
+            app:destination="@id/resultListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/resultListFragment"
+        android:name="android.ptc.com.ptcflixing.ui.result_list.ResultListFragment"
+        android:label="Products"
+        tools:layout="@layout/fragment_result_list_page">
+        <action
+            android:id="@+id/action_resultListFragment_to_itemDetailFragment"
+            app:destination="@id/itemDetailFragment" />
+        <argument
+            android:name="searchQuery"
+            android:defaultValue='"phone"'
+            app:argType="string" />
+    </fragment>
+</navigation>

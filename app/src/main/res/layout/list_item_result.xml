@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.ptc.com.ptcflixing.domain.model.Product" />
+
+        <import type="android.ptc.com.ptcflixing.ui.utils.IFormat" />
+
+        <import type="android.ptc.com.ptcflixing.ui.utils.OnItemClickListener" />
+
+        <import type="android.ptc.com.ptcflixing.domain.model.CurrencyConfig" />
+
+        <variable
+            name="product"
+            type="Product" />
+
+        <variable
+            name="itemClicked"
+            type="OnItemClickListener" />
+
+        <variable
+            name="format"
+            type="IFormat" />
+
+        <variable
+            name="configure"
+            type="CurrencyConfig" />
+
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> itemClicked.onProductClick(product)}"
+        app:strokeColor="@color/lightGray"
+        app:strokeWidth="1dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:padding="10dp">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/image"
+                loadImageFromUrl="@{product.image}"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:scaleType="centerInside"
+                app:layout_constraintBottom_toTopOf="@+id/guideline2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@tools:sample/avatars" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/guideline2">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/brand"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginTop="2dp"
+                    android:text="@{product.brand}"
+                    android:textColor="@android:color/darker_gray"
+                    tools:text="Brand" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginTop="2dp"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="@{product.name}"
+                    android:textColor="@android:color/black"
+                    tools:text="product name" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/specialPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:text="@{format.currencyFormat(product.specialPrice, configure)}"
+                        android:textColor="@android:color/black"
+                        android:textIsSelectable="false"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/name"
+                        tools:text="N154d" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:background="@drawable/custom_discount_background"
+                        android:gravity="start"
+                        android:padding="2dp"
+                        android:text="@{format.intToStringPercentage(product.maxSavingPercentage)}"
+                        android:textColor="@color/colorPrimary"
+                        tools:text="30%" />
+
+                </FrameLayout>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/price"
+                    strikeThroughText="@{true}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginTop="2dp"
+                    android:text="@{format.currencyFormat(product.price, configure)}"
+                    android:textColor="@android:color/darker_gray"
+                    android:textIsSelectable="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/specialPrice"
+                    tools:text="N154d" />
+
+                <RatingBar
+                    android:id="@+id/rating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="?attr/ratingBarStyleSmall"
+                    android:layout_gravity="start"
+                    android:isIndicator="true"
+                    android:layout_marginStart="10dp"
+                    android:numStars="5"
+                    android:max="5"
+                    android:progressBackgroundTint="@color/lightGray"
+                    android:progressTint="@color/ratingColor"
+                    android:rating="@{product.ratingAverage}"
+                    android:scaleX="1.2"
+                    android:scaleY="1.2" />
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_begin="100dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>

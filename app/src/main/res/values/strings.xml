@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Jumia PTC</string>
+    <string name="list_of_products">list of products</string>
+    <string name="image_of_the_product">image of the product</string>
+    <string name="search_jumia">Search Jumia</string>
+    <string name="search_button_text">Search</string>
+    <string name="sorry_nothing_found">Sorry nothing matches your search!</string>
+    <string name="please_check_your_internet_connection">Please check your internet connection</string>
+    <string name="specifications">specifications</string>
+    <string name="product_not_found">Product not found</string>
+</resources>

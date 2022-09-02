@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.ptc.com.ptcflixing.data.local.room.entity.ImageEntity" />
+
+        <import type="android.ptc.com.ptcflixing.ui.utils.OnItemClickListener" />
+
+        <variable
+            name="image"
+            type="ImageEntity" />
+
+        <variable
+            name="listener"
+            type="OnItemClickListener" />
+
+    </data>
+<FrameLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardViewFavourite"
+        android:layout_width="40dp"
+        android:layout_height="100dp"
+        android:layout_margin="10dp"
+        android:elevation="4dp"
+        android:onClick="@{() ->listener.onImageClick(image)}"
+        app:cardCornerRadius="2dp">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/topic_image_favourites"
+            loadImageFromUrl="@{image.imageUrl}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="50dp"
+            android:scaleType="fitCenter"
+            tools:src="@tools:sample/avatars" />
+    </com.google.android.material.card.MaterialCardView>
+</FrameLayout>
+
+
+</layout>

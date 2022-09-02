@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.ptc.com.ptcflixing.ui.result_list.ResultListViewModel" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="ResultListViewModel" />
+
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.result_list.ResultListFragment">
+
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/result_list_app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            app:elevation="0dp">
+
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/search_bar_results"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:background="@drawable/custom_search_view_background"
+                android:elevation="4dp"
+                android:focusable="false"
+                app:iconifiedByDefault="false"
+                app:layout_constraintBottom_toTopOf="@id/resultListRecyclerView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_scrollFlags="scroll|enterAlways"
+                app:queryBackground="@android:color/transparent"
+                app:queryHint="@string/search_jumia" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/resultListRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/list_of_products"
+            android:visibility="@{viewModel.switchUIState.showProducts ? View.VISIBLE : View.GONE }"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/search_bar_results"
+            tools:itemCount="3"
+            tools:listitem="@layout/list_item_result" />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/internetConnection"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="@{viewModel.switchUIState.showNotConnected ? View.VISIBLE : View.GONE }">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/appCompatImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_no_internet"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/please_check_your_internet_connection"
+                android:textColor="@color/lightGray"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/appCompatImageView" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:text="@string/sorry_nothing_found"
+            android:textColor="@color/lightGray"
+            android:textSize="20sp"
+            android:visibility="@{viewModel.switchUIState.showNothingFound ? View.VISIBLE : View.GONE}">
+
+        </com.google.android.material.textview.MaterialTextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:indeterminate="true"
+                android:visibility="@{viewModel.switchUIState.showLoading ? View.VISIBLE : View.GONE}"
+                app:indicatorColor="@color/colorPrimary" />
+        </LinearLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>

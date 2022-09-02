@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FFA500</color>
+    <color name="colorPrimaryDark">@android:color/black</color>
+    <color name="colorOnPrimary">@android:color/white</color>
+    <color name="colorAccent">@android:color/black</color>
+    <color name="lightGray">#D3D3D3</color>
+
+    <color name="splash_screen_background">@android:color/white</color>
+    <color name="brand_text_color">@color/lightGray</color>
+    <color name="info">@android:color/black</color>
+    <color name="product_background_color">@android:color/white</color>
+    <!--    Toolbar-->
+    <color name="toolbar_background_color">@android:color/black</color>
+    <color name="toolbar_text_color">@android:color/white</color>
+    <!--    Search-->
+    <color name="searchBarOutlineColor">#FFA500</color>
+
+    <color name="blue">#000FFF</color>
+    <color name="ratingColor">#FFD700</color>
+
+
+</resources>
